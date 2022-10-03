@@ -1,4 +1,4 @@
-namespace Billing.ServiceTemplate
+namespace Billing.Service.WebApi
 {
     public class WeatherForecast
     {

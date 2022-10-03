@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Billing.ServiceTemplate.Controllers
+namespace Billing.Service.WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
