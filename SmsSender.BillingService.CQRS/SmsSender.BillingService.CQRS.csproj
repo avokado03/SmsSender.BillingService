@@ -7,9 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DomainNameFolder\Commands\" />
-    <Folder Include="DomainNameFolder\Queries\" />
-    <Folder Include="DomainNameFolder\Mappings\" />
+    <Folder Include="SmsProfile\Commands\" />
+    <Folder Include="SmsProfile\Queries\" />
+    <Folder Include="SmsProfile\Mappings\" />
   </ItemGroup>
 
   <ItemGroup>
