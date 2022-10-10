@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmsSender.BillingService.CQRS.Bootstrap.Behaviors;
+using SmsSender.BillingService.CQRS.SmsProfile.Queries.Get;
+using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 using SmsSender.BillingService.Domain;
 
 namespace SmsSender.BillingService.CQRS.Bootstrap;
@@ -21,8 +23,15 @@ public static class ServiceCollectionExtensions
     {
         services.AddDbContext<BillingDbContext>(configuration);
         services.ConfigurePipeline();
+        services.ConfigureHandlers();
 
         return services;
+    }
+
+    private static void ConfigureHandlers(this IServiceCollection services)
+    {
+        services.AddScoped<IRequestHandler<GetSmsProfilesQuery, GetSmsProfilesResponse>, GetSmsProfilesQueryHandler>();
+        services.AddScoped<IRequestHandler<GetSmsProfileByIdQuery, GetSmsProfileByIdResponse>, GetSmsProfileByIdQueryHandler>();
     }
 
     private static void ConfigurePipeline(this IServiceCollection services)

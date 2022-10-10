@@ -32,7 +32,9 @@ public class RequestValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
             .Select(v => v.Validate(context))
             .SelectMany(result => result.Errors)
             .Where(f => f != null)
-            .ToArray();
+            .GroupBy(x => new { x.PropertyName, x.ErrorMessage })
+            .Select(x => x.FirstOrDefault())
+            .ToList();
 
         if (errors.Any())
         {

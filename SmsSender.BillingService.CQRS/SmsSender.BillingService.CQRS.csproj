@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="SmsProfile\Commands\" />
-    <Folder Include="SmsProfile\Queries\" />
+    <Folder Include="SmsProfile\Commands\Create\" />
+    <Folder Include="SmsProfile\Commands\Delete\" />
     <Folder Include="SmsProfile\Mappings\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
   <ItemGroup>

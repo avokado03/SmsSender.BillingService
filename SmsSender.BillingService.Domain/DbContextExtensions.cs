@@ -17,9 +17,7 @@ public static class DbContextExtensions
 
     services.AddDbContext<TContext>(options =>
        options.UseNpgsql(
-                configuration.GetConnectionString(typeof(TContext).Name),
-                builder => builder.MigrationsAssembly(typeof(TContext).Assembly.FullName)
-                                  .CommandTimeout(600)
+                configuration.GetConnectionString(typeof(TContext).Name)
         ).EnableSensitiveDataLogging(true),
     contextLifetime: ServiceLifetime.Scoped,
     optionsLifetime: ServiceLifetime.Singleton);
