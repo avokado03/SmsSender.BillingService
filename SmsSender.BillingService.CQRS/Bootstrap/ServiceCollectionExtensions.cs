@@ -4,6 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SmsSender.BillingService.CQRS.Bootstrap.Behaviors;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.Get;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
+using SmsSender.BillingService.CQRS.SmsProfile.Commands.Create;
+using SmsSender.BillingService.CQRS.SmsProfile.Commands.Delete;
 using SmsSender.BillingService.Domain;
 
 namespace SmsSender.BillingService.CQRS.Bootstrap;
@@ -32,6 +34,8 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<IRequestHandler<GetSmsProfilesQuery, GetSmsProfilesResponse>, GetSmsProfilesQueryHandler>();
         services.AddScoped<IRequestHandler<GetSmsProfileByIdQuery, GetSmsProfileByIdResponse>, GetSmsProfileByIdQueryHandler>();
+        services.AddScoped<IRequestHandler<CreateSmsProfileCommand, CreateSmsProfileResponse>, CreateSmsProfileCommandHandler>();
+        services.AddScoped<IRequestHandler<DeleteSmsProfileCommand, Unit>, DeleteSmsProfileCommandHandler>();
     }
 
     private static void ConfigurePipeline(this IServiceCollection services)

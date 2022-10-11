@@ -1,5 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SmsSender.BillingService.CQRS.SmsProfile.Commands.Create;
+using SmsSender.BillingService.CQRS.SmsProfile.Commands.Delete;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.Get;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 
@@ -32,6 +34,25 @@ public class SmsProfilesController : ControllerBase
     public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new GetSmsProfileByIdQuery { SmsProfileId = id }, cancellationToken);
+
+        return Ok(response);
+    }
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CreateSmsProfileResponse))]
+    public async Task<IActionResult> Post(CreateSmsProfileCommand command, CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(command, cancellationToken);
+
+        return Ok(response);
+    }
+
+    [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Delete(DeleteSmsProfileCommand command, CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(command, cancellationToken);
 
         return Ok(response);
     }

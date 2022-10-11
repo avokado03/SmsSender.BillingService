@@ -3,16 +3,11 @@
 namespace SmsSender.BillingService.CQRS.SmsProfile.Dto;
 
 /// <summary>
-/// DTO для <see cref="Domain.Entities.SmsProfile"/>
+/// DTO для создаваемого смс-профиля
 /// </summary>
 [AutoMap(typeof(Domain.Entities.SmsProfile), ReverseMap = true)]
-public class SmsProfileDto
+public class SmsProfileOnCreatingDto
 {
-    /// <summary>
-    /// Идентификатор смс-профиля
-    /// </summary>
-    public int SmsProfileId { get; set; }
-
     /// <summary>
     /// Идентификатор пользователя
     /// </summary>
@@ -27,9 +22,4 @@ public class SmsProfileDto
     /// Сообщений в минуту
     /// </summary>
     public short MessagePerMinute { get; set; }
-
-    /// <summary>
-    /// Признак блокировки профиля
-    /// </summary>
-    public bool IsBlocked { get; set; }
 }

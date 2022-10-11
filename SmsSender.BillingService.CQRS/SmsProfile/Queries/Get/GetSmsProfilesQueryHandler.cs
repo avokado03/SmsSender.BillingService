@@ -30,8 +30,6 @@ public class GetSmsProfilesQueryHandler : IRequestHandler<GetSmsProfilesQuery, G
 
         var result = await _dbContext.SmsProfiles.ToListAsync().ConfigureAwait(false);
 
-        
-
         var response = new GetSmsProfilesResponse
         {
             SmsProfiles = _mapper.Map<List<SmsProfileDto>>(result),

@@ -7,9 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="SmsProfile\Commands\Create\" />
-    <Folder Include="SmsProfile\Commands\Delete\" />
-    <Folder Include="SmsProfile\Mappings\" />
+    <Folder Include="SmsProfile\Commands\CheckProfile\" />
+    <Folder Include="SmsProfile\Commands\AddMessages\" />
   </ItemGroup>
 
   <ItemGroup>
