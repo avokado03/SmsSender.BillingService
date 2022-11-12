@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmsSender.BillingService.Domain.Entities;
+using SmsSender.BillingService.Data.Entities;
 
-namespace SmsSender.BillingService.Domain;
+namespace SmsSender.BillingService.Data;
 
 public partial class BillingDbContext : DbContext
 {

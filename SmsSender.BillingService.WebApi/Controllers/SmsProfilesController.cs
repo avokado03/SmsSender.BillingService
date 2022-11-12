@@ -5,12 +5,12 @@ using SmsSender.BillingService.CQRS.SmsProfile.Commands.Delete;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.Get;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 
-namespace Billing.Service.WebApi.Controllers;
+namespace SmsSender.BillingService.WebApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class SmsProfilesController : ControllerBase
-{      
+{
     private readonly ILogger<SmsProfilesController> _logger;
     private readonly IMediator _mediator;
 

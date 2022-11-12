@@ -1,4 +1,4 @@
-﻿namespace SmsSender.BillingService.Domain.Entities;
+﻿namespace SmsSender.BillingService.Data.Entities;
 
 public partial class SmsProfile
 {

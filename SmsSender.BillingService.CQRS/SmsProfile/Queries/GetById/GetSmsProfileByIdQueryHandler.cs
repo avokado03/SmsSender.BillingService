@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SmsSender.BillingService.CQRS.SmsProfile.Dto;
-using SmsSender.BillingService.Domain;
+using SmsSender.BillingService.Data;
 
 namespace SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 

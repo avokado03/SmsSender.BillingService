@@ -5,7 +5,7 @@ namespace SmsSender.BillingService.CQRS.SmsProfile.Dto;
 /// <summary>
 /// DTO для <see cref="Domain.Entities.SmsProfile"/>
 /// </summary>
-[AutoMap(typeof(Domain.Entities.SmsProfile), ReverseMap = true)]
+[AutoMap(typeof(Data.Entities.SmsProfile), ReverseMap = true)]
 public class SmsProfileDto
 {
     /// <summary>

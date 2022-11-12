@@ -6,7 +6,7 @@ using SmsSender.BillingService.CQRS.SmsProfile.Queries.Get;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 using SmsSender.BillingService.CQRS.SmsProfile.Commands.Create;
 using SmsSender.BillingService.CQRS.SmsProfile.Commands.Delete;
-using SmsSender.BillingService.Domain;
+using SmsSender.BillingService.Data;
 
 namespace SmsSender.BillingService.CQRS.Bootstrap;
 

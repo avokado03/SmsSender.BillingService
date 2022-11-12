@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SmsSender.BillingService.Domain\SmsSender.BillingService.Domain.csproj" />
+    <ProjectReference Include="..\SmsSender.BillingService.Domain\SmsSender.BillingService.Data.csproj" />
   </ItemGroup>
 
 </Project>

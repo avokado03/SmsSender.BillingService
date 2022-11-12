@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsSender.BillingService.CQRS", "SmsSender.BillingService.CQRS\SmsSender.BillingService.CQRS.csproj", "{BD1E01F5-1644-487C-98A2-C3DD1B1A7B57}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsSender.BillingService.Domain", "SmsSender.BillingService.Domain\SmsSender.BillingService.Domain.csproj", "{0437D843-C968-418E-8D60-CB36FCD6B46F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsSender.BillingService.Data", "SmsSender.BillingService.Domain\SmsSender.BillingService.Data.csproj", "{0437D843-C968-418E-8D60-CB36FCD6B46F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmsSender.BillingService.WebApi", "SmsSender.BillingService.WebApi\SmsSender.BillingService.WebApi.csproj", "{E60DEC0B-0213-438A-B2DE-39D781CDF30C}"
 EndProject

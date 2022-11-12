@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SmsSender.BillingService.Data;
 
-namespace SmsSender.BillingService.Domain;
+namespace SmsSender.BillingService.Data;
 
 public static class DbContextExtensions
 {
