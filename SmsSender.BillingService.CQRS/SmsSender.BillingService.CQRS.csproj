@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="SmsProfile\Commands\CheckProfile\" />
-    <Folder Include="SmsProfile\Commands\AddMessages\" />
+    <Compile Remove="SmsProfile\Commands\AddMessages\**" />
+    <Compile Remove="SmsProfile\Commands\CheckProfile\**" />
+    <EmbeddedResource Remove="SmsProfile\Commands\AddMessages\**" />
+    <EmbeddedResource Remove="SmsProfile\Commands\CheckProfile\**" />
+    <None Remove="SmsProfile\Commands\AddMessages\**" />
+    <None Remove="SmsProfile\Commands\CheckProfile\**" />
   </ItemGroup>
 
   <ItemGroup>

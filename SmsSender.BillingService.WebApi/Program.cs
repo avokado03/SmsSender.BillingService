@@ -5,6 +5,7 @@ using SmsSender.BillingService.CQRS.Bootstrap;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 using SmsSender.BillingService.WebApi.Middlewares;
 using System.Reflection;
+using SmsSender.Common.RabbitMQ;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,7 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<GetSmsProfileByIdQueryValidator>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly,
     typeof(GetSmsProfileByIdQueryValidator).Assembly);
+builder.Services.ConfigureRabbit(builder.Configuration);
 builder.Services.UseCQRS(builder.Configuration);
 builder.Services.AddControllers();
 

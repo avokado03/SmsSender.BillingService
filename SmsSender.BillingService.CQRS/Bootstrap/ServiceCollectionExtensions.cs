@@ -7,6 +7,7 @@ using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 using SmsSender.BillingService.CQRS.SmsProfile.Commands.Create;
 using SmsSender.BillingService.CQRS.SmsProfile.Commands.Delete;
 using SmsSender.BillingService.Data;
+using SmsSender.BillingService.CQRS.SmsProfile.Commands.SendMessage;
 
 namespace SmsSender.BillingService.CQRS.Bootstrap;
 
@@ -36,6 +37,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRequestHandler<GetSmsProfileByIdQuery, GetSmsProfileByIdResponse>, GetSmsProfileByIdQueryHandler>();
         services.AddScoped<IRequestHandler<CreateSmsProfileCommand, CreateSmsProfileResponse>, CreateSmsProfileCommandHandler>();
         services.AddScoped<IRequestHandler<DeleteSmsProfileCommand, Unit>, DeleteSmsProfileCommandHandler>();
+        services.AddScoped<IRequestHandler<SendMessageCommand, SendMessageResponse>, SendMessageCommandHandler>();
     }
 
     private static void ConfigurePipeline(this IServiceCollection services)
