@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SmsSender.BillingService.CQRS.SmsProfile.Commands.Create;
 using SmsSender.BillingService.CQRS.SmsProfile.Commands.Delete;
+using SmsSender.BillingService.CQRS.SmsProfile.Commands.SendMessage;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.Get;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 
@@ -41,6 +42,15 @@ public class SmsProfilesController : ControllerBase
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CreateSmsProfileResponse))]
     public async Task<IActionResult> Post(CreateSmsProfileCommand command, CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(command, cancellationToken);
+
+        return Ok(response);
+    }
+
+    [HttpPost]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SendMessageResponse))]
+    public async Task<IActionResult> SendMessage(SendMessageCommand command, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(command, cancellationToken);
 

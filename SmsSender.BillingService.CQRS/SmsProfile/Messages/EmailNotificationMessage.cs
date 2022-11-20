@@ -1,10 +1,19 @@
 ﻿using SmsSender.Common.RabbitMQ.Interfaces;
 
-namespace SmsSender.BillingService.CQRS.SmsProfile.Messages
+namespace SmsSender.BillingService.CQRS.SmsProfile.Messages;
+
+/// <summary>
+/// E-mail опоыещение
+/// </summary>
+public class EmailNotificationMessage : IMessage
 {
-    public class EmailNotificationMessage : IMessage
-    {
-        public string Email { get; set; }
-        public string Content { get; set; }
-    }
+    /// <summary>
+    /// Адрес получателя
+    /// </summary>
+    public string Email { get; set; }
+
+    /// <summary>
+    /// Содержимое
+    /// </summary>
+    public string Content { get; set; }
 }
