@@ -6,6 +6,7 @@ using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 using SmsSender.BillingService.WebApi.Middlewares;
 using System.Reflection;
 using SmsSender.Common.RabbitMQ;
+using SmsSender.Common.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<GetSmsProfileByIdQueryValid
 builder.Services.AddAutoMapper(typeof(Program).Assembly,
     typeof(GetSmsProfileByIdQueryValidator).Assembly);
 builder.Services.ConfigureRabbit(builder.Configuration);
+builder.Services.ConfigureRedis(builder.Configuration);
 builder.Services.UseCQRS(builder.Configuration);
 builder.Services.AddControllers();
 
@@ -33,7 +35,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
 
 app.UseSwagger();
 app.UseSwaggerUI();
