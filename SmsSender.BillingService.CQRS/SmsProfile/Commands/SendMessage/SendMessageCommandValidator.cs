@@ -10,10 +10,8 @@ public class SendMessageCommandValidator : AbstractValidator<SendMessageCommand>
     public SendMessageCommandValidator()
     {
         RuleFor(x => x.SmsProfileId)
-            .NotEmpty()
-            .WithMessage("Идентификатор смс-профиля не может быть пустым")
-            .NotEqual(Guid.Empty)
-            .WithMessage("Значение идентификатора должно отличаться от значения по умодчанию");
+            .NotNull()
+            .WithMessage("Идентификатор смс-профиля не может быть пустым");
 
         RuleFor(x => x.Message)
             .MinimumLength(4)

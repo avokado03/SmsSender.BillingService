@@ -1,7 +1,8 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using SmsSender.BillingService.CQRS.SmsProfile.Messages;
 using SmsSender.BillingService.Data;
+using SmsSender.Common.RabbitMQ.Interfaces;
 
 namespace SmsSender.BillingService.CQRS.SmsProfile.Commands.SendMessage;
 
@@ -11,12 +12,12 @@ namespace SmsSender.BillingService.CQRS.SmsProfile.Commands.SendMessage;
 public class SendMessageCommandHandler : IRequestHandler<SendMessageCommand, SendMessageResponse>
 {
     private readonly BillingDbContext _dbContext;
-    private readonly IMapper _mapper;
+    private IRabbitClient _rabbitClient;
 
-    public SendMessageCommandHandler(IMapper mapper, BillingDbContext dbContext)
+    public SendMessageCommandHandler(BillingDbContext dbContext, IRabbitClient rabbitClient)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-        _mapper = mapper;
+        _rabbitClient = rabbitClient;
     }
 
     /// <inheritdoc />
@@ -57,6 +58,10 @@ public class SendMessageCommandHandler : IRequestHandler<SendMessageCommand, Sen
         await _dbContext.SaveChangesAsync().ConfigureAwait(false);
 
         // rabbit
+        _rabbitClient.Publish(new EmailNotificationMessage {
+            Content = "Ваш лимит сообщений исчерпан. Профиль заблокирован", 
+            Email = profile.Email
+        }, "email_notification");
 
         response.IsSended = true;
         return response;
