@@ -14,11 +14,11 @@ public class SendMessageCommandHandler : IRequestHandler<SendMessageCommand, Sen
 {
     private readonly BillingDbContext _dbContext;
     private IRabbitClient _rabbitClient;
-    private RedisRateLimiter _rateLimiter;
+    private IRedisRateLimiter _rateLimiter;
 
 
-    public SendMessageCommandHandler(BillingDbContext dbContext, IRabbitClient rabbitClient
-        , RedisRateLimiter rateLimiter)
+    public SendMessageCommandHandler(BillingDbContext dbContext, IRabbitClient rabbitClient,
+        IRedisRateLimiter rateLimiter)
     {
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         _rabbitClient = rabbitClient;
@@ -36,7 +36,8 @@ public class SendMessageCommandHandler : IRequestHandler<SendMessageCommand, Sen
         var response = new SendMessageResponse();
         response.IsSended = true;
 
-        var profile = await _dbContext.SmsProfiles.SingleOrDefaultAsync(x => x.SmsProfileId == request.SmsProfileId).ConfigureAwait(false);
+        var profile = await _dbContext.SmsProfiles.SingleOrDefaultAsync(x => x.SmsProfileId == request.SmsProfileId)
+            .ConfigureAwait(false);
 
         try
         {

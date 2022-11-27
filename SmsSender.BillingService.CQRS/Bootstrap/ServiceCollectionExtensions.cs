@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SmsSender.Common.RabbitMQ;
+using SmsSender.Common.Redis;
 using SmsSender.BillingService.CQRS.Bootstrap.Behaviors;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.Get;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
@@ -8,6 +10,7 @@ using SmsSender.BillingService.CQRS.SmsProfile.Commands.Create;
 using SmsSender.BillingService.CQRS.SmsProfile.Commands.Delete;
 using SmsSender.BillingService.Data;
 using SmsSender.BillingService.CQRS.SmsProfile.Commands.SendMessage;
+using SmsSender.BillingService.CQRS.SmsProfile.Commands.FillBalance;
 
 namespace SmsSender.BillingService.CQRS.Bootstrap;
 
@@ -25,9 +28,10 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection UseCQRS(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<BillingDbContext>(configuration);
+        services.ConfigureRabbit(configuration);
+        services.ConfigureRedis(configuration);
         services.ConfigurePipeline();
         services.ConfigureHandlers();
-
         return services;
     }
 
@@ -38,6 +42,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRequestHandler<CreateSmsProfileCommand, CreateSmsProfileResponse>, CreateSmsProfileCommandHandler>();
         services.AddScoped<IRequestHandler<DeleteSmsProfileCommand, Unit>, DeleteSmsProfileCommandHandler>();
         services.AddScoped<IRequestHandler<SendMessageCommand, SendMessageResponse>, SendMessageCommandHandler>();
+        services.AddScoped<IRequestHandler<FillBalanceCommand, FillBalanceResponse>, FillBalanceCommandHandler>();
     }
 
     private static void ConfigurePipeline(this IServiceCollection services)

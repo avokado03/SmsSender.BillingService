@@ -5,8 +5,6 @@ using SmsSender.BillingService.CQRS.Bootstrap;
 using SmsSender.BillingService.CQRS.SmsProfile.Queries.GetById;
 using SmsSender.BillingService.WebApi.Middlewares;
 using System.Reflection;
-using SmsSender.Common.RabbitMQ;
-using SmsSender.Common.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,18 +24,26 @@ builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<GetSmsProfileByIdQueryValidator>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly,
     typeof(GetSmsProfileByIdQueryValidator).Assembly);
-builder.Services.ConfigureRabbit(builder.Configuration);
-builder.Services.ConfigureRedis(builder.Configuration);
 builder.Services.UseCQRS(builder.Configuration);
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo 
+    { 
+        Title = "SmsSender.BillingService", Version = "v1" 
+    });
+    c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+});
 
 var app = builder.Build();
 
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("./v1/swagger.json", "SmsSender.BillingService V1");
+});
 
 app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 app.UseHttpsRedirection();

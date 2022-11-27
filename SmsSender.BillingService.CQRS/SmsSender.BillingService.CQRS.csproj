@@ -24,8 +24,8 @@
     <PackageReference Include="FluentValidation" Version="11.2.2" />
     <PackageReference Include="MediatR" Version="11.0.0" />
     <PackageReference Include="MediatR.Contracts" Version="1.0.1" />
-    <PackageReference Include="SmsSender.Common.RabbitMQ" Version="1.0.0" />
-    <PackageReference Include="SmsSender.Common.Redis" Version="1.0.0" />
+    <PackageReference Include="SmsSender.Common.RabbitMQ" Version="1.0.2" />
+    <PackageReference Include="SmsSender.Common.Redis" Version="1.0.2" />
     <PackageReference Include="StackExchange.Redis" Version="2.6.70" />
   </ItemGroup>
 

@@ -11,7 +11,9 @@ public class SendMessageCommandValidator : AbstractValidator<SendMessageCommand>
     {
         RuleFor(x => x.SmsProfileId)
             .NotNull()
-            .WithMessage("Идентификатор смс-профиля не может быть пустым");
+            .WithMessage("Идентификатор смс-профиля не может быть пустым")
+            .GreaterThan(0)
+            .WithMessage("Идентификатор смс-профиля должен быть больше нуля");
 
         RuleFor(x => x.Message)
             .MinimumLength(4)
