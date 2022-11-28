@@ -1,1 +1,1 @@
-# Billing.ServiceTemplate
+# SmsSender.BillingService
